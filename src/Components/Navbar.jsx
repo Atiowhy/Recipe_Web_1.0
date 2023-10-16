@@ -1,10 +1,22 @@
 import React from 'react';
 import Profil from '../assets/Ellipse 129.png';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
+import 'bootstrap/dist/js/bootstrap.min.js';
+
 const Navbar = () => {
+  const Navigate = useNavigate();
+  const auth = useSelector((state) => state.auth);
+
+  const Logout = () => {
+    localStorage.clear();
+    Navigate('/login');
+  };
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-transparent">
-        <div className="container-fluid">
+      <nav className="navbar navbar-expand-lg sticky-top shadow bg-body-tertiary">
+        <div className="container-fluid ">
           <button
             className="navbar-toggler"
             type="button"
@@ -17,51 +29,49 @@ const Navbar = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div
-            className="collapse navbar-collapse w-100 justify-content-between"
-            
+            className="collapse navbar-collapse  justify-content-between"
+            id="navbarNav"
           >
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a
-                  className="nav-link active"
-                  aria-current="page"
-                  href="/Landing.html"
-                >
+                <a className="nav-link active" aria-current="page" href="/">
                   Home
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link active" href="#">
-                  Add Recipe
+                <a className="nav-link active" href="/add">
+                  Add Recipes
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link active" href="/Search Menu.html">
+                <a className="nav-link active" href="/search">
                   Search Menu
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link active" href="/Profile.html">
+                <a className="nav-link active" href="/profile">
                   Profile
                 </a>
               </li>
             </ul>
-            <div className="img-position d-flex gap-2 me-3">
+            <div className="img-position d-flex gap-2  me-3">
               <div className="img-prof d-flex justify-content-end">
                 <img
                   src={Profil}
+                  width={100}
                   alt="Image Profile"
-                  className="img-fluid img mt-1 w-25"
+                  className="img-fluid d-block img mt-1"
                 />
               </div>
-
               <div className="text-img">
                 <div className="name lh-1">
                   <div className="name">
-                    <p>Ayudia</p>
+                    {<p className="fw-bold">{localStorage.getItem('name')}</p>}
                   </div>
-                  <div className="logout">
-                    <p className="fw-bold">Logout</p>
+                  <div className="logout d-flex justify-content-end">
+                    <p className="fw-bold btn btn-danger" onClick={Logout}>
+                      Logout
+                    </p>
                   </div>
                 </div>
               </div>

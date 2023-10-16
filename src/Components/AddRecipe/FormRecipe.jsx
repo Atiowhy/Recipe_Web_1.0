@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
-
-import axios from 'axios';
-
-let token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtYSI6InVzZXJCYXJ1IiwiZW1haWwiOiJ1c2VyMUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiRhcmdvbjJpZCR2PTE5JG09NjU1MzYsdD0zLHA9NCQ4RWxPZ0xnZjBTZDJlbzBNWVhCVGVRJCtvVjFCV3lyU25CQW9KNWNyRVFyTlcrVzh0SlVyNHJQQTJYdldzazZDZDAiLCJwaG90byI6bnVsbCwiY3JlYXRlZF9hdCI6IjIwMjMtMDgtMDhUMDU6MTI6MzAuNDE5WiIsImlhdCI6MTY5MTQ5MjMwOH0.5phBSRcBVcBsdIrAWyeRtpiF7GnsJjM87XNKxgfDuTA`;
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { postMenu } from '../../redux/actions/menu';
+import { Container, Row, Col, Form, Card, Button } from 'react-bootstrap';
+import {toast, Bounce, ToastContainer} from 'react-toastify'
 
 const FormRecipe = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [photo, setPhoto] = useState(null);
   const [inputData, setInputData] = useState({
     title: '',
-    ingridients: '',
+    ingredients: '',
     category_id: '1',
     photo_url: '',
   });
@@ -17,24 +20,12 @@ const FormRecipe = () => {
     event.preventDefault();
     let bodyFormData = new FormData();
     bodyFormData.append('title', inputData.title);
-    bodyFormData.append('ingridients', inputData.ingridients);
+    bodyFormData.append('ingredients', inputData.ingredients);
     bodyFormData.append('category_id', inputData.category_id);
-    bodyFormData.append('photo', photo);
+    bodyFormData.append('image', photo);
     console.log(bodyFormData);
 
-    axios
-      .post('http://localhost:4000/recipe', bodyFormData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'multipart/form-data',
-        },
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    dispatch(postMenu(bodyFormData, navigate));
   };
 
   const onChange = (e) => {
@@ -54,6 +45,19 @@ const FormRecipe = () => {
   return (
     <>
       <div className="container mt-5">
+      <ToastContainer
+          position="top-center"
+          autoClose={2000}
+          hideProgressBar={false}
+          transition={Bounce}
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
         <form onSubmit={postData}>
           <div
             className="mb-3 border border-1 rounded mt-5 w-100"
@@ -63,20 +67,24 @@ const FormRecipe = () => {
               Upload
               <input
                 type="file"
-                name='photo'
+                name="image"
                 onChange={onChangePhoto}
                 className="form-control"
                 style={{ display: 'none' }}
               />
-              {
-                photo && <img src={inputData.photo_url} width={400}/>
-              }
+              {photo && (
+                <img
+                  src={inputData.photo_url}
+                  // width={400}
+                  className="img-fluid w-25 rounded"
+                />
+              )}
             </label>
           </div>
           <div className="mb-3 title-form">
             <input
               type="text"
-              name='title'
+              name="title"
               value={inputData.title}
               onChange={onChange}
               className="form-control title"
@@ -87,44 +95,31 @@ const FormRecipe = () => {
           <div className="mb-3">
             <input
               type="text"
-              name='ingridients'
-              value={inputData.ingridients}
+              name="ingredients"
+              value={inputData.ingredients}
               onChange={onChange}
               className="form-control ingredients"
               placeholder="Ingredients"
               style={{ height: '250px', background: 'rgba(246, 245, 244, 1)' }}
             />
           </div>
-          <div className="dropdown">
-            <button
-              className="btn list btn-secondary dropdown-toggle text-muted"
-              style={{ background: 'rgba(246, 245, 244, 1)' }}
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Category
-            </button>
-            <ul className="dropdown-menu">
-              <li>
-                <a className="dropdown-item" href="#">
-                  Main Course
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" href="#">
-                  Dessert
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" href="#">
-                  Appetizier
-                </a>
-              </li>
-            </ul>
-          </div>
+
+          <Row>
+            <Col md={2}>
+              <Form.Select className="py-3 bg-body-tertiary">
+                <option>Category</option>
+                <option value="1">Main Course</option>
+                <option value="2">Dessert</option>
+                <option value="3">Appetizer</option>
+              </Form.Select>
+            </Col>
+          </Row>
+
           <div className="post text-center mt-4">
-            <button type='submit' className="btn fs-5 btn-warning text-white w-50">
+            <button
+              type="submit"
+              className="btn fs-5 btn-warning text-white w-50"
+            >
               Post
             </button>
           </div>

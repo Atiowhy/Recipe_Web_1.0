@@ -3,15 +3,13 @@ import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
 import ImgProf from '../assets/Ellipse 129.png';
 import Card from '../Components/Profile/Card';
-
-
+import { NavLink, NavItem } from 'react-bootstrap';
 
 const Profile = () => {
-
   return (
     <>
       <Navbar />
-      <div className="container shadow rounded">
+      <div className="container shadow rounded mt-5">
         <div className="header d-flex justify-content-between">
           <div className="img-position d-flex mt-3">
             <div className="img-prof w-25">
@@ -29,7 +27,7 @@ const Profile = () => {
                     href="/EditProfile.html"
                     className="text-decoration-none text-dark"
                   >
-                    Ayudia
+                    {localStorage.getItem('name')}
                   </a>
                 </div>
                 <div className="logout">
@@ -46,8 +44,18 @@ const Profile = () => {
           </div>
         </div>
 
+        <div className="row">
+          <div className="col-md">
+            <ul className='nav'>
+              <li className='nav-item'><a href=""></a></li>
+              <li><a href="" className='navbar-brand data-bs-toggle'></a></li>
+              <li><a href=""></a></li>
+            </ul>
+          </div>
+        </div>
         <Card />
       </div>
+      <Footer />
     </>
   );
 };

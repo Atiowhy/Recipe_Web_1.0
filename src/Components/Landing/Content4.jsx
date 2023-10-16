@@ -1,58 +1,61 @@
 import React from 'react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import img4 from '../../assets/Image5.png';
-
-let token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtYSI6InVzZXJCYXJ1IiwiZW1haWwiOiJ1c2VyMUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiRhcmdvbjJpZCR2PTE5JG09NjU1MzYsdD0zLHA9NCQ4RWxPZ0xnZjBTZDJlbzBNWVhCVGVRJCtvVjFCV3lyU25CQW9KNWNyRVFyTlcrVzh0SlVyNHJQQTJYdldzazZDZDAiLCJwaG90byI6bnVsbCwiY3JlYXRlZF9hdCI6IjIwMjMtMDgtMDhUMDU6MTI6MzAuNDE5WiIsImlhdCI6MTY5MTQ5MjMwOH0.5phBSRcBVcBsdIrAWyeRtpiF7GnsJjM87XNKxgfDuTA`;
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getMenu } from '../../redux/actions/menu';
 
 const Content4 = () => {
-  const [data, setData] = useState(null);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { data, isError, errorMessage, isLoading } = useSelector(
+    (state) => state.menu
+  );
+  const { search, setSearch } = useState('');
+  const {id} = useParams
+
+  // let url = import.meta.env.VITE_BASE_URL;
+
   useEffect(() => {
-    axios
-      .get('http://localhost:4000/recipe', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        console.log(res);
-        setData(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    dispatch(getMenu());
   }, []);
 
   return (
-    <>
-      <div className="container mt-5">
-        <div className="title-4 border border-0 border-start border-3 border-warning ">
-          <h1 className="ms-3">Popular Recipe</h1>
-        </div>
-        <div className="row mt-4">
-          {data?.map((item, index) => {
-            return (
-              <div
-                className="col-md-4 "
-                key={item.id}
-                onClick={() => console.log(item.id)}
-              >
-                <div className="title">
-                  <img
-                    src={item.photo}
-                    alt="Img"
-                    className="img-fluid w-100 object-fit-cover rounded"
-                  />
-                  <div className="title-product">
-                    <p>{item.title}</p>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+    <div className="container mt-5">
+      <div className="title-4 border border-0 border-start border-3 border-warning ">
+        <h1 className="ms-3">Popular Recipe</h1>
+        {/* {isLoading && <div className='spinner-border text-light' role='status'>
+            <span className='sr-only'></span>
+            </div>} */}
       </div>
-    </>
+      <div className="row mt-4">
+        {data?.map((item, index) => {
+          return (
+            <div
+              className="col-md-4 mb-3"
+              key={item.id}
+              onClick={() => navigate(`/detail/${id}`)}
+            >
+              <div className="title position-relative">
+                <div className="title-product position-absolute d-flex w-100 h-100 align-items-end">
+                  <p className="ps-3 w-75 fw-bold text-white fs-4">
+                    {item.title}
+                  </p>
+                  <p className="text-white fw-bold">({item.author})</p>
+                </div>
+                <img
+                  src={item.image}
+                  // onClick={() => navigate('/detail')}
+                  alt="Img"
+                  width="100%"
+                  className="img-fluid object-fit-cover rounded shadow h-75"
+                />
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 };
 

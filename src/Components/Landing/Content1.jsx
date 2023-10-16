@@ -24,11 +24,12 @@ const Content1 = () => {
                 </div>
               </div>
             </div>
-            <div className="image d-flex justify-content-center">
+            <div className="image  d-flex justify-content-center">
               <img
                 src={Img1}
-                className="img-fluid w-75 border p-3 rounded border-3 border-warning"
+                className="img-fluid w-75 hover-zoom:hover border p-3 rounded border-3 border-warning"
                 alt="Image"
+                
               />
             </div>
           </div>

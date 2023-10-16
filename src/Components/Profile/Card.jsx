@@ -1,52 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ImgProf from '../../assets/Ellipse 129.png';
-import axios from 'axios';
-import { useNavigate } from 'react-router';
-import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
-let token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtYSI6InVzZXJCYXJ1IiwiZW1haWwiOiJ1c2VyMUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiRhcmdvbjJpZCR2PTE5JG09NjU1MzYsdD0zLHA9NCQ4RWxPZ0xnZjBTZDJlbzBNWVhCVGVRJCtvVjFCV3lyU25CQW9KNWNyRVFyTlcrVzh0SlVyNHJQQTJYdldzazZDZDAiLCJwaG90byI6bnVsbCwiY3JlYXRlZF9hdCI6IjIwMjMtMDgtMDhUMDU6MTI6MzAuNDE5WiIsImlhdCI6MTY5MTQ5MjMwOH0.5phBSRcBVcBsdIrAWyeRtpiF7GnsJjM87XNKxgfDuTA`;
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  getMenu,
+  deleteMenu,
+  getMenuDetail,
+  getMenuUsers,
+} from '../../redux/actions/menu';
+import axios from 'axios';
 
 const Card = () => {
-  const navigate = useNavigate();
+  const [data, setData] = useState(null);
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-  const getData = () => {
+  useEffect(() => {
     axios
       .get('http://localhost:4000/recipe', {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `bearer ${localStorage.getItem('token')}`,
         },
       })
-      .then((res) => {
-        console.log(res);
-        setData(res.data.data);
+      .then((response) => {
+        console.log(response);
+        setData(response.data.data);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.log(error);
       });
-  };
-
-  const [data, setData] = useState(null);
-  useEffect(() => {
-    getData();
   }, []);
-
-  const deleteData = (id) => {
-    axios
-      .delete(`http://localhost:4000/recipe/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        console.log(res);
-        getData();
-      })
-      .catch((err) => {
-        console.log(err);
-        getData();
-      });
-  };
 
   return (
     <>
@@ -59,16 +44,22 @@ const Card = () => {
           >
             <div className="col-md-4 d-flex">
               <div className="contentImg w-100 h-100">
-                <img src={item.photo} className="img-fluid" alt="" />
+                <img
+                  src={item.image}
+                  className="img-fluid rounded shadow"
+                  alt=""
+                />
               </div>
             </div>
             <div className="col-md-6">
               <div className="text-content ms-3">
-                <h3>{item.title}</h3>
-                <h4>Ingredients:</h4>
-                <p>{item.ingridients}</p>
-                <h5>Category:</h5>
-                <p>{item.category}</p>
+                <div className='mt-2'>
+                  <h1>{item.title}</h1>
+                  <h4>Ingredients:</h4>
+                  <p>{item.ingredients}</p>
+                  <h5>Category:</h5>
+                  <p>{item.category}</p>
+                </div>
                 <div className="riview">
                   <button className="btn btn-warning text-white">
                     10Likes - 12Riview - 3Bookmark
@@ -84,7 +75,7 @@ const Card = () => {
                       />
                     </div>
                     <div className="text-img d-flex align-items-center mt-2">
-                      <p>Keren</p>
+                      <p>{item.author}</p>
                     </div>
                     <div className="edit w-100 d-flex align-items-center">
                       <div className="button-edit w-100">
@@ -95,7 +86,9 @@ const Card = () => {
                         </Link>
                         <button
                           className="btn btn-danger mt-2 ms-1"
-                          onClick={() => deleteData(item.id)}
+                          onClick={() =>
+                            dispatch(deleteMenu(item.id, navigate))
+                          }
                         >
                           Delete
                         </button>

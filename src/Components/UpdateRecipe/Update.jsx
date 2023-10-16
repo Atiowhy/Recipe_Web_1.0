@@ -1,65 +1,50 @@
 import React, { useEffect, useState } from 'react';
-
+import { getMenuDetail, updateMenu } from '../../redux/actions/menu';
 import axios from 'axios';
-import { useParams } from 'react-router';
-
-let token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtYSI6InVzZXJCYXJ1IiwiZW1haWwiOiJ1c2VyMUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiRhcmdvbjJpZCR2PTE5JG09NjU1MzYsdD0zLHA9NCQ4RWxPZ0xnZjBTZDJlbzBNWVhCVGVRJCtvVjFCV3lyU25CQW9KNWNyRVFyTlcrVzh0SlVyNHJQQTJYdldzazZDZDAiLCJwaG90byI6bnVsbCwiY3JlYXRlZF9hdCI6IjIwMjMtMDgtMDhUMDU6MTI6MzAuNDE5WiIsImlhdCI6MTY5MTQ5MjMwOH0.5phBSRcBVcBsdIrAWyeRtpiF7GnsJjM87XNKxgfDuTA`;
+import { useNavigate, useParams } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
 
 const UpdateData = () => {
-  const {menuId} = useParams();
+  const { menuId } = useParams();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const data = useSelector((state) => state.DetailMenu);
   const [photo, setPhoto] = useState(null);
   const [inputData, setInputData] = useState({
     title: '',
-    ingridients: '',
+    ingredients: '',
     category_id: '1',
-    photo_url: '',
+    image_url: '',
   });
-
-  
-
-  const getData = () => {
-    axios
-      .get(`http://localhost:4000/recipe/${menuId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        console.log(res);
-        setInputData({... inputData,title:res.data.data.title, ingridients:res.data.data.ingridients, photo_url:res.data.data.photo})
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
   useEffect(() => {
     console.log(menuId);
-    getData()
+    dispatch(getMenuDetail(menuId));
   }, []);
+
+  useEffect(() => {
+    data &&
+      setInputData(
+        {
+          ...inputData,
+          title: data.title,
+          image_url: data.data.image,
+          ingredients: data.ingredients,
+          category_id: data.category_id,
+        },
+        [data]
+      );
+  });
 
   const postData = (event) => {
     event.preventDefault();
     let bodyFormData = new FormData();
     bodyFormData.append('title', inputData.title);
-    bodyFormData.append('ingridients', inputData.ingridients);
+    bodyFormData.append('ingredients', inputData.ingredients);
     bodyFormData.append('category_id', inputData.category_id);
-    bodyFormData.append('photo', photo);
+    bodyFormData.append('image', photo);
     console.log(bodyFormData);
-
-    axios
-      .put(`http://localhost:4000/recipe/${menuId}`, bodyFormData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'multipart/form-data',
-        },
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    dispatch(updateMenu(bodyFormData, menuId, navigate));
   };
 
   const onChange = (e) => {
@@ -72,9 +57,11 @@ const UpdateData = () => {
     e.target.files[0] &&
       setInputData({
         ...inputData,
-        photo_url: URL.createObjectURL(e.target.files[0]),
+        image_url: URL.createObjectURL(e.target.files[0]),
       });
   };
+
+  //sungguh nyata kasih mu di sepanjang hidupku dengan darah mu kau tebus dosa ku sungguh nyata kasih mu di sepnjang hidupku segenap hati ku hanya untuk mu di sepanjang hidupku sungguh nyata kasih mu di sepanjang hidup ku segenap hati ku hanya untuk meu segenap hatiku hanya untuk mu kau terindah di dalam hidupku kasih mu sempurna dan pengorbanan mu besar allah yang perkasa dia bapa yang kekal gunung batu keslamatan ku engkau yang termulia di bumi di surga termasyur perkasa selamanya engkau yang berkusa di dalam sgala hal ada kuasa dalam nama yesus ku nama yang perkasa dia bapa yang kekal gunung batu keslamatanku
 
   return (
     <>
@@ -88,12 +75,12 @@ const UpdateData = () => {
               Upload
               <input
                 type="file"
-                name="photo"
+                name="image"
                 onChange={onChangePhoto}
                 className="form-control"
                 style={{ display: 'none' }}
               />
-              <img src={inputData.photo_url} width={400} />
+              <img src={inputData.image_url} width={400} />
             </label>
           </div>
           <div className="mb-3 title-form">
@@ -110,8 +97,8 @@ const UpdateData = () => {
           <div className="mb-3">
             <input
               type="text"
-              name="ingridients"
-              value={inputData.ingridients}
+              name="ingredients"
+              value={inputData.ingredients}
               onChange={onChange}
               className="form-control ingredients"
               placeholder="Ingredients"
