@@ -15,6 +15,7 @@ import { toast } from 'react-toastify';
     localStorage.setItem('name', result.data.data.name);
     localStorage.setItem('email', result.data.data.email);
     localStorage.setItem('photo', result.data.data.photo);
+    localStorage.setItem('id', result.data.data.id)
 
     dispatch({
       type: 'AUTH_LOGIN_SUCCESS',

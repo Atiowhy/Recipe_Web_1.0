@@ -12,7 +12,7 @@ const Content4 = () => {
     (state) => state.menu
   );
   const { search, setSearch } = useState('');
-  const {id} = useParams
+  // const { id } = useParams;
 
   // let url = import.meta.env.VITE_BASE_URL;
 
@@ -34,7 +34,7 @@ const Content4 = () => {
             <div
               className="col-md-4 mb-3"
               key={item.id}
-              onClick={() => navigate(`/detail/${id}`)}
+              onClick={() => navigate(`/detail/${item.id}`)}
             >
               <div className="title position-relative">
                 <div className="title-product position-absolute d-flex w-100 h-100 align-items-end">
@@ -43,13 +43,15 @@ const Content4 = () => {
                   </p>
                   <p className="text-white fw-bold">({item.author})</p>
                 </div>
-                <img
-                  src={item.image}
-                  // onClick={() => navigate('/detail')}
-                  alt="Img"
-                  width="100%"
-                  className="img-fluid object-fit-cover rounded shadow h-75"
-                />
+                <div>
+                  <img
+                    src={item.image}
+                    // onClick={() => navigate('/detail')}
+                    alt="Img"
+                    width="100%"
+                    className="img-fluid object-fit-cover rounded shadow"
+                  />
+                </div>
               </div>
             </div>
           );

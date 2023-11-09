@@ -32,7 +32,7 @@ function App() {
             </AuthCheck>
           }
         />
-        <Route path="/detail" element={<DetailMenu />} />
+        <Route path="/detail/:id" element={<DetailMenu />} />
 
         <Route path="/add" element={<Add />} />
         <Route path="/update-menu/:menuId" element={<UpdateRecipe />} />

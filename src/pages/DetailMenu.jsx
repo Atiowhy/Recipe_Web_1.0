@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../Components/Navbar';
 import { Container, Row, Col } from 'react-bootstrap';
 import img1 from '../assets/Image1.png';
 import imgProf from '../assets/Ellipse 129.png';
 import Footer from '../Components/Footer';
+import axios from 'axios';
+import { useParams } from 'react-router';
+import { getMenuDetail } from '../redux/actions/menu';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function DetailMenu() {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const { data } = useSelector((state) => state.menuDetailReducer);
+
+  useEffect(() => {
+    dispatch(getMenuDetail(id));
+  }, [dispatch, id]);
   return (
     <div>
       <Navbar />
@@ -24,7 +35,7 @@ export default function DetailMenu() {
                         alt=""
                       />
                       <div className="lh-1 ms-3">
-                        <p className="fw-bold">Ayudia</p>
+                        <p className="fw-bold">halo</p>
                         <p className="fw-bold">10 Recipes</p>
                       </div>
                     </div>
@@ -41,22 +52,27 @@ export default function DetailMenu() {
                   </div>
                 </div>
                 <div className="content">
-                  <div className="title d-flex justify-content-center mt-3 p-3">
-                    <h1>Egg Sandwich</h1>
-                  </div>
-                  <div className="photo d-flex justify-content-center p-3">
-                    <img src={img1} className="img-fluid w-50" alt="img" />
-                  </div>
-                  <div className="ms-5 ingridient">
-                    <div className="list">
-                      <h6>Ingredients</h6>
-                      <ul>
-                        <li>2 Eggs</li>
-                        <li>2 Tbsp Mayonaise</li>
-                        <li>3 Slices Bread</li>
-                      </ul>
+                  <div>
+                    <div className="title d-flex justify-content-center mt-3 p-3">
+                      <h1>{data?.title}</h1>
+                    </div>
+                    <div className="photo d-flex justify-content-center p-3 mb-3">
+                      <img
+                        src={data?.image}
+                        className="img-fluid w-50 rounded"
+                        alt="img"
+                      />
+                    </div>
+                    <div className="ms-5 ingridient">
+                      <div className="list">
+                        <h6>Ingredients</h6>
+                        <ul>
+                          <li>{data?.ingredients}</li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
+
                   <div className="chatBox border-top border-bottom border-3 border-warning p-3 mt-5">
                     <div className="row">
                       <div className="col-md-2 border-end border-3 border-warning">

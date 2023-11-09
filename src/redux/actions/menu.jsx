@@ -7,12 +7,21 @@ let headers = {
 };
 export const getMenuDetail = (id) => async (dispatch) => {
   try {
-    dispatch({ type: 'GET_MENU_DETAIL_PENDING' });
+    dispatch({
+      type: 'GET_MENU_DETAIL_PENDING',
+    });
     const result = await axios.get(url + `/recipe/${id}`, { headers });
     console.log(result);
-    dispatch({ payload: result.data.data, type: 'GET_MENU_DETAIL_SUCCES' });
+    dispatch({
+      type: 'GET_MENU_DETAIL_SUCCESS',
+      payload: result.data.data,
+    });
   } catch (error) {
-    dispatch({ payload: error.message, type: 'GET_MENU_DETAIL_FAILED' });
+    dispatch({
+      type: 'GET_MENU_DETAIL_FAILED',
+      payload: error.message,
+    });
+    console.log(error);
   }
 };
 
@@ -45,17 +54,19 @@ export const postMenu = (data, navigate) => async (dispatch) => {
   }
 };
 
-export const deleteMenu = (id, navigate) => async (dispatch) => {
+export const deleteMenu = (id) => async (dispatch) => {
   try {
     dispatch({ type: 'DELETE_MENU_PENDING' });
     const result = await axios.delete(url + `/recipe/${id}`, { headers });
     console.log(result);
-    navigate('/');
     dispatch({ payload: result.data.data, type: 'DELETE_MENU_SUCCESS' });
+    // setTimeout(() =>{
+    //   navigate('/profile')
+    // })
   } catch (err) {
     console.log('error');
     dispatch({
-      payload: err.response.data.message,
+      payload: err.message,
       type: 'DELETE_MENU_FAILED',
     });
     console.log(err);
@@ -79,15 +90,25 @@ export const updateMenu = (data, id, navigate) => async (dispatch) => {
   }
 };
 
-export const getMenuUsers = (users_id) => async (dispatch) => {
+export const getMenuUsers = () => async (dispatch) => {
   try {
-    dispatch({ type: 'GET_MENU_USERS_PENDING' });
-    const result = await axios.get(url + `/data/${users_id}`, { headers });
+    dispatch({
+      type: 'GET_MENU_USERS_PENDING',
+    });
+    const result = await axios.get(
+      url + `/data/${localStorage.getItem('id')}`,
+      { headers }
+    );
     console.log(result);
-    dispatch({ payload: result.data.data, type: 'GET_MENU_USERS_SUCCESS' });
+    dispatch({
+      type: 'GET_MENU_USERS_SUCCESS',
+      payload: result.data.data,
+    });
   } catch (error) {
-    console.log('error');
-    dispatch({ payload: error.message, type: 'GET_MENU_USERS_FAILED' });
+    dispatch({
+      type: 'GET_MENU_USERS_FAILED',
+      payload: error.message,
+    });
     console.log(error);
   }
 };

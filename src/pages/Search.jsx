@@ -3,7 +3,7 @@ import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
 import axios from 'axios';
 import progImage from '../assets/Ellipse 129.png';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchMenu } from '../redux/actions/menu';
 import { getMenu } from '../redux/actions/menu';
@@ -124,6 +124,7 @@ export default function Search() {
         {data?.data?.map((item, index) => {
           return (
             <div
+            onClick={() => Navigate(`/detail/${id}`)}
               key={index}
               className="row mt-4 border border-0 border-bottom border-1 border-dark p-3"
             >

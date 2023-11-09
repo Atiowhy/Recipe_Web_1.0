@@ -54,11 +54,12 @@ const Navbar = () => {
                 </a>
               </li>
             </ul>
-            <div className="img-position d-flex gap-2  me-3">
+            {/* <div className="img-position d-flex gap-2  me-3 bg-primary w-50">
               <div className="img-prof d-flex justify-content-end">
                 <img
                   src={Profil}
-                  width={100}
+                  width={40}
+                  
                   alt="Image Profile"
                   className="img-fluid d-block img mt-1"
                 />
@@ -74,6 +75,17 @@ const Navbar = () => {
                     </p>
                   </div>
                 </div>
+              </div>
+            </div> */}
+            <div className="prof d-flex gap-2">
+              <div className="img">
+                <div className="img-prof d-flex justify-content-center">
+                  <img src={Profil} alt="profil" width={75} />
+                </div>
+              </div>
+              <div className="name lh-1">
+                <p className="fw-bold">{localStorage.getItem('name')}</p>
+                <button className="btn btn-danger" onClick={() => Logout()}>Logout</button>
               </div>
             </div>
           </div>

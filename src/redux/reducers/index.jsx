@@ -7,6 +7,7 @@ import post_menu from './post_menu';
 import updateMenu from './update_menu';
 import getDetail from './getMenuDetail'
 import getMenuUsersReducer from './getMenuUsers';
+import menuDetailReducer from './getMenuDetail';
 
 const rootReducers = combineReducers({
   loginReducer,
@@ -16,7 +17,8 @@ const rootReducers = combineReducers({
   post_menu,
   updateMenu,
   getDetail,
-  getMenuUsersReducer
+  getMenuUsersReducer,
+  menuDetailReducer
 });
 
 export default rootReducers;
