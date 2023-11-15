@@ -4,14 +4,24 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/js/bootstrap.min.js';
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
   const Navigate = useNavigate();
   const auth = useSelector((state) => state.auth);
 
   const Logout = () => {
-    localStorage.clear();
-    Navigate('/login');
+    if(localStorage.getItem('token')){
+      Swal.fire({
+        title: 'Loading...',
+        allowOutsideClick: false, // Mencegah interaksi selama loading
+        onBeforeOpen: () => {
+          Swal.showLoading();
+        },
+      });
+      Navigate('/login')
+      Swal.close()
+    }
   };
   return (
     <>

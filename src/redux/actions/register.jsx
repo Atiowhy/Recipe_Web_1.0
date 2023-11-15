@@ -1,20 +1,31 @@
 import axios from 'axios';
-import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 
 const register = (data, navigate) => async (dispatch) => {
   try {
     dispatch({ type: 'AUTH_REGISTER_PENDING' });
+    Swal.fire({
+      title: 'Loading...',
+      allowOutsideClick: false, // Mencegah interaksi selama loading
+      onBeforeOpen: () => {
+        Swal.showLoading();
+      },
+    });
     const result = await axios.post(
       `${import.meta.env.VITE_BASE_URL}/auth/register`,
       data
     );
+    Swal.close();
     console.log(result);
 
     dispatch({ payload: result.data.data, type: 'AUTH_REGISTER_SUCCESS' });
-    toast.success('Register Success!');
-    setTimeout(() => {
-      navigate('/login');
-    }, 2000);
+    Swal.fire({
+      icon: 'success',
+      title: 'Login Success!',
+      timer: 2000,
+      showConfirmButton: true,
+    });
+    navigate('/login');
   } catch (error) {
     console.log(error);
 
@@ -22,7 +33,11 @@ const register = (data, navigate) => async (dispatch) => {
       payload: error.message,
       type: 'AUTH_REGISTER_FAILED',
     });
-    toast.error(error.message);
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: error.response?.data?.message,
+    });
   }
 };
 
@@ -63,5 +78,3 @@ export default register;
 //     toast.error(error.message);
 //   }
 // };
-
-

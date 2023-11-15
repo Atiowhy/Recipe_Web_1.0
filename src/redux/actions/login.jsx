@@ -1,37 +1,51 @@
 import axios from 'axios';
-import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 
- const Login = (form, navigate) => async (dispatch) => {
+const Login = (form, navigate) => async (dispatch) => {
   try {
     dispatch({
       type: 'AUTH_LOGIN_PENDING',
+    });
+    Swal.fire({
+      title: 'Loading...',
+      allowOutsideClick: false, // Mencegah interaksi selama loading
+      onBeforeOpen: () => {
+        Swal.showLoading();
+      },
     });
     const result = await axios.post(
       `${import.meta.env.VITE_BASE_URL}/auth/login`,
       form
     );
-
     localStorage.setItem('token', result.data.data.token);
     localStorage.setItem('name', result.data.data.name);
     localStorage.setItem('email', result.data.data.email);
     localStorage.setItem('photo', result.data.data.photo);
-    localStorage.setItem('id', result.data.data.id)
+    localStorage.setItem('id', result.data.data.id);
+    Swal.close();
 
     dispatch({
       type: 'AUTH_LOGIN_SUCCESS',
       payload: result.data,
     });
-    toast.success('Login Success!');
-    setTimeout(() => {
-      navigate('/');
-    }, 2000);
+    Swal.fire({
+      icon: 'success',
+      title: 'Login Success!',
+      timer: 2000,
+      showConfirmButton: true,
+    });
+    navigate('/');
   } catch (error) {
     console.log(error);
     dispatch({
       type: 'AUTH_LOGIN_FAILED',
       payload: error.message,
     });
-    toast.error(error.message);
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: error.message,
+    });
   }
 };
 
@@ -72,4 +86,4 @@ import { toast } from 'react-toastify';
 //   }
 // };
 
-export default Login
+export default Login;
