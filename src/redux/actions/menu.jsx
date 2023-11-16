@@ -24,6 +24,7 @@ export const getMenuDetail = (id) => async (dispatch) => {
       { headers }
     );
     Swal.close();
+    console.log(id);
     console.log(result);
     dispatch({
       type: 'GET_MENU_DETAIL_SUCCESS',
