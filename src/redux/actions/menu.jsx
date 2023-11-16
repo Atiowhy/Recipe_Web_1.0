@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router';
-let url = import.meta.env.VITE_BASE_URL;
+// let url = import.meta.env.VITE_BASE_URL;
 let headers = {
   Authorization: `Bearer ${localStorage.getItem('token')}`,
 };
@@ -19,7 +19,10 @@ export const getMenuDetail = (id) => async (dispatch) => {
         Swal.showLoading();
       },
     });
-    const result = await axios.get(url + `/recipe/${id}`, { headers });
+    const result = await axios.get(
+      `https://raspberry-binturong-kit.cyclic.app/recipe/${id}`,
+      { headers }
+    );
     Swal.close();
     console.log(result);
     dispatch({
@@ -50,7 +53,10 @@ export const getMenu = () => async (dispatch) => {
         Swal.showLoading();
       },
     });
-    const result = await axios.get(url + '/recipe', { headers });
+    const result = await axios.get(
+      'https://raspberry-binturong-kit.cyclic.app/recipe',
+      { headers }
+    );
     Swal.close();
     dispatch({ payload: result.data.data, type: 'GET_MENU_SUCCESS' });
   } catch (error) {
@@ -75,7 +81,11 @@ export const postMenu = (data, navigate) => async (dispatch) => {
         Swal.showLoading();
       },
     });
-    const result = await axios.post(url + `/recipe`, data, { headers });
+    const result = await axios.post(
+      `https://raspberry-binturong-kit.cyclic.app/recipe`,
+      data,
+      { headers }
+    );
     Swal.close();
     dispatch({ payload: result.data.data, type: 'POST_MENU SUCCESS' });
     Swal.fire({
@@ -106,7 +116,10 @@ export const deleteMenu = (id) => async (dispatch) => {
         Swal.showLoading();
       },
     });
-    const result = await axios.delete(url + `/recipe/${id}`, { headers });
+    const result = await axios.delete(
+      `https://raspberry-binturong-kit.cyclic.app/recipe/${id}`,
+      { headers }
+    );
     console.log(result);
     Swal.close();
     dispatch({ payload: result.data.data, type: 'DELETE_MENU_SUCCESS' });
@@ -142,9 +155,13 @@ export const updateMenu = (data, id, navigate) => async (dispatch) => {
         Swal.showLoading();
       },
     });
-    const result = await axios.put(url + `/recipe/${id}`, data, { headers });
+    const result = await axios.put(
+      `https://raspberry-binturong-kit.cyclic.app/recipe/${id}`,
+      data,
+      { headers }
+    );
     console.log(result);
-    Swal.close()
+    Swal.close();
     dispatch({ payload: result.data.data, type: 'UPDATE_MENU_SUCCESS' });
     Swal.fire({
       icon: 'success',
@@ -170,7 +187,9 @@ export const getMenuUsers = () => async (dispatch) => {
       type: 'GET_MENU_USERS_PENDING',
     });
     const result = await axios.get(
-      url + `/data/${localStorage.getItem('id')}`,
+      `https://raspberry-binturong-kit.cyclic.app/data/${localStorage.getItem(
+        'id'
+      )}`,
       { headers }
     );
     console.log(result);
@@ -191,8 +210,7 @@ export const searchMenu = (search, sort, page) => async (dispatch) => {
   try {
     dispatch({ type: 'GET_MENU_SEARCH_PENDING' });
     const result = await axios.get(
-      url +
-        `/search?search=${search}&searchBy=title&limit=5&page=${page}&sortBy=${sort}`,
+      `https://raspberry-binturong-kit.cyclic.app/search?search=${search}&searchBy=title&limit=5&page=${page}&sortBy=${sort}`,
       { headers }
     );
     dispatch({ type: 'GET_MENU_SEARCH_SUCCESS', payload: result.data });
