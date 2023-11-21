@@ -25,7 +25,7 @@ const register = (data, navigate) => async (dispatch) => {
       timer: 2000,
       showConfirmButton: true,
     });
-    navigate('/login');
+    navigate('/');
   } catch (error) {
     console.log(error);
 
