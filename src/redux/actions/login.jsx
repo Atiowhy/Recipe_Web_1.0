@@ -35,7 +35,7 @@ const Login = (form, navigate) => async (dispatch) => {
       showConfirmButton: true,
     });
     setTimeout(() => {
-      navigate('/');
+      navigate('/landing');
     }, [2000]);
   } catch (error) {
     console.log(error);

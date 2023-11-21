@@ -121,7 +121,7 @@ export default function Register() {
                       Already have account?
                       <span>
                         <Link
-                          to={'/login'}
+                          to={'/'}
                           className="text-decoration-none ms-1"
                         >
                           Log In here

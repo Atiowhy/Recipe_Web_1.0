@@ -20,7 +20,7 @@ const Navbar = () => {
         },
       });
       localStorage.clear();
-      Navigate('/login');
+      Navigate('/');
       Swal.close();
     }
   };
@@ -45,7 +45,7 @@ const Navbar = () => {
           >
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">
+                <a className="nav-link active" aria-current="page" href="/landing">
                   Home
                 </a>
               </li>
