@@ -45,49 +45,29 @@ const Navbar = () => {
           >
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/landing">
-                  Home
-                </a>
+                <Link to="/landing">
+                  <a className="nav-link active" aria-current="page">
+                    Home
+                  </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link active" href="/add">
-                  Add Recipes
-                </a>
+                <Link to="/add">
+                  <a className="nav-link active">Add Recipes</a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link active" href="/search">
-                  Search Menu
-                </a>
+                <Link to="/search">
+                  <a className="nav-link active">Search Menu</a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link active" href="/profile">
-                  Profile
-                </a>
+                <Link to="/profile">
+                  <a className="nav-link active">Profile</a>
+                </Link>
               </li>
             </ul>
-            {/* <div className="img-position d-flex gap-2  me-3 bg-primary w-50">
-              <div className="img-prof d-flex justify-content-end">
-                <img
-                  src={Profil}
-                  width={40}
-                  
-                  alt="Image Profile"
-                  className="img-fluid d-block img mt-1"
-                />
-              </div>
-              <div className="text-img">
-                <div className="name lh-1">
-                  <div className="name">
-                    {<p className="fw-bold">{localStorage.getItem('name')}</p>}
-                  </div>
-                  <div className="logout d-flex justify-content-end">
-                    <p className="fw-bold btn btn-danger" onClick={Logout}>
-                      Logout
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div> */}
+
             <div className="prof d-flex gap-2">
               <div className="img">
                 <div className="img-prof d-flex justify-content-center">
