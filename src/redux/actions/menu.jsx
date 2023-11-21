@@ -3,12 +3,12 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router';
 // let url = import.meta.env.VITE_BASE_URL;
-let headers = {
-  Authorization: `Bearer ${localStorage.getItem('token')}`,
-};
 
 export const getMenuDetail = (id) => async (dispatch) => {
   try {
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
     dispatch({
       type: 'GET_MENU_DETAIL_PENDING',
     });
@@ -44,16 +44,18 @@ export const getMenuDetail = (id) => async (dispatch) => {
   }
 };
 
-export const getMenu = () => async(dispatch) => {
+export const getMenu = () => async (dispatch) => {
   try {
-    const token = localStorage.getItem('token');
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
     dispatch({ type: 'GET_MENU_PENDING' });
 
     const result = await axios.get(
       'https://raspberry-binturong-kit.cyclic.app/recipe',
       { headers }
     );
-    console.log(token);
+
     // Swal.close();
     dispatch({ payload: result.data, type: 'GET_MENU_SUCCESS' });
   } catch (error) {
@@ -66,6 +68,9 @@ export const getMenu = () => async(dispatch) => {
 
 export const postMenu = (data, navigate) => async (dispatch) => {
   try {
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
     dispatch({ type: 'POST_MENU_PENDING' });
     Swal.fire({
       title: 'Loading...',
@@ -101,6 +106,9 @@ export const postMenu = (data, navigate) => async (dispatch) => {
 
 export const deleteMenu = (id) => async (dispatch) => {
   try {
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
     dispatch({ type: 'DELETE_MENU_PENDING' });
     Swal.fire({
       title: 'Loading...',
@@ -140,6 +148,9 @@ export const deleteMenu = (id) => async (dispatch) => {
 
 export const updateMenu = (data, id, navigate) => async (dispatch) => {
   try {
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
     dispatch({ type: 'UPDATE_MENU_PENDING' });
     Swal.fire({
       title: 'Loading...',
@@ -176,6 +187,9 @@ export const updateMenu = (data, id, navigate) => async (dispatch) => {
 
 export const getMenuUsers = () => async (dispatch) => {
   try {
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
     dispatch({
       type: 'GET_MENU_USERS_PENDING',
     });
@@ -201,6 +215,9 @@ export const getMenuUsers = () => async (dispatch) => {
 
 export const searchMenu = (search, sort, page) => async (dispatch) => {
   try {
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
     dispatch({ type: 'GET_MENU_SEARCH_PENDING' });
     const result = await axios.get(
       `https://raspberry-binturong-kit.cyclic.app/search?search=${search}&searchBy=title&limit=5&page=${page}&sortBy=${sort}`,
