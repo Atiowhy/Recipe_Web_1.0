@@ -46,7 +46,7 @@ const Login = (form, navigate) => async (dispatch) => {
     Swal.fire({
       icon: 'error',
       title: 'Oops...',
-      text: error.message,
+      text: error.response.message,
     });
   }
 };
