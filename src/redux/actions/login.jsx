@@ -6,13 +6,13 @@ const Login = (form, navigate) => async (dispatch) => {
     dispatch({
       type: 'AUTH_LOGIN_PENDING',
     });
-    // Swal.fire({
-    //   title: 'Loading...',
-    //   allowOutsideClick: false, // Mencegah interaksi selama loading
-    //   onBeforeOpen: () => {
-    //     Swal.showLoading();
-    //   },
-    // });
+    Swal.fire({
+      title: 'Loading...',
+      allowOutsideClick: false, // Mencegah interaksi selama loading
+      onBeforeOpen: () => {
+        Swal.showLoading();
+      },
+    });
     const result = await axios.post(
       `https://raspberry-binturong-kit.cyclic.app/auth/login`,
       form
@@ -22,7 +22,7 @@ const Login = (form, navigate) => async (dispatch) => {
     localStorage.setItem('email', result.data.data.email);
     localStorage.setItem('photo', result.data.data.photo);
     localStorage.setItem('id', result.data.data.id);
-    // Swal.close();
+    Swal.close();
 
     dispatch({
       type: 'AUTH_LOGIN_SUCCESS',

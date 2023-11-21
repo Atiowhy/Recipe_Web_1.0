@@ -50,13 +50,19 @@ export const getMenu = () => async (dispatch) => {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     };
     dispatch({ type: 'GET_MENU_PENDING' });
-
+    Swal.fire({
+      title: 'Loading...',
+      allowOutsideClick: false, // Mencegah interaksi selama loading
+      onBeforeOpen: () => {
+        Swal.showLoading();
+      },
+    });
     const result = await axios.get(
       'https://raspberry-binturong-kit.cyclic.app/recipe',
       { headers }
     );
 
-    // Swal.close();
+    Swal.close();
     dispatch({ payload: result.data, type: 'GET_MENU_SUCCESS' });
   } catch (error) {
     dispatch({ payload: error.message, type: 'GET_MENU_FAILED' });
