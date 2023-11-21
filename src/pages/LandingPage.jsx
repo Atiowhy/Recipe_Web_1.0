@@ -14,7 +14,7 @@ const Landing = () => {
   };
   return (
     <>
-      {condition()}
+      <Navbar />
       <div>
         <Content1 />
         <Content2 />
