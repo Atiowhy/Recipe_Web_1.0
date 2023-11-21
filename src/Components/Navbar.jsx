@@ -45,24 +45,24 @@ const Navbar = () => {
           >
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link to="/landing">
+                <Link to="/landing" className="text-decoration-none">
                   <a className="nav-link active" aria-current="page">
                     Home
                   </a>
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/add">
+                <Link to="/add" className="text-decoration-none">
                   <a className="nav-link active">Add Recipes</a>
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/search">
+                <Link to="/search" className="text-decoration-none">
                   <a className="nav-link active">Search Menu</a>
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/profile">
+                <Link to="/profile" className="text-decoration-none">
                   <a className="nav-link active">Profile</a>
                 </Link>
               </li>
