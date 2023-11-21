@@ -11,7 +11,7 @@ const Navbar = () => {
   const auth = useSelector((state) => state.auth);
 
   const Logout = () => {
-    if(localStorage.getItem('token')){
+    if (localStorage.getItem('token')) {
       Swal.fire({
         title: 'Loading...',
         allowOutsideClick: false, // Mencegah interaksi selama loading
@@ -19,8 +19,9 @@ const Navbar = () => {
           Swal.showLoading();
         },
       });
-      Navigate('/login')
-      Swal.close()
+      localStorage.clear();
+      Navigate('/login');
+      Swal.close();
     }
   };
   return (
@@ -95,7 +96,9 @@ const Navbar = () => {
               </div>
               <div className="name lh-1">
                 <p className="fw-bold">{localStorage.getItem('name')}</p>
-                <button className="btn btn-danger" onClick={() => Logout()}>Logout</button>
+                <button className="btn btn-danger" onClick={() => Logout()}>
+                  Logout
+                </button>
               </div>
             </div>
           </div>

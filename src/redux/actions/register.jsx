@@ -12,7 +12,7 @@ const register = (data, navigate) => async (dispatch) => {
       },
     });
     const result = await axios.post(
-      `${import.meta.env.VITE_BASE_URL}/auth/register`,
+      `https://raspberry-binturong-kit.cyclic.app/auth/register`,
       data
     );
     Swal.close();
@@ -21,7 +21,7 @@ const register = (data, navigate) => async (dispatch) => {
     dispatch({ payload: result.data.data, type: 'AUTH_REGISTER_SUCCESS' });
     Swal.fire({
       icon: 'success',
-      title: 'Login Success!',
+      title: 'Register Success!',
       timer: 2000,
       showConfirmButton: true,
     });

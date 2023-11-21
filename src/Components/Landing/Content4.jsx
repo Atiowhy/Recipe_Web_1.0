@@ -11,14 +11,10 @@ const Content4 = () => {
   const { data, isError, errorMessage, isLoading } = useSelector(
     (state) => state.menu
   );
-  const { search, setSearch } = useState('');
-  // const { id } = useParams;
-
-  // let url = import.meta.env.VITE_BASE_URL;
 
   useEffect(() => {
     dispatch(getMenu());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="container mt-5">
@@ -29,7 +25,7 @@ const Content4 = () => {
             </div>} */}
       </div>
       <div className="row mt-4">
-        {data?.map((item, index) => {
+        {data?.data.map((item, index) => {
           return (
             <div
               className="col-md-4 mb-3"

@@ -8,19 +8,13 @@ import Content3 from '../Components/Landing/Content3';
 import Content4 from '../Components/Landing/Content4';
 
 const Landing = () => {
-  const token = localStorage.getItem('token');
-  console.log(token);
-
-  const DisplayNav = () => {
-    if (token) {
-      return <Navbar />;
-    } else {
-      return <NavbarGuest />;
-    }
+  const condition = () => {
+    const token = localStorage.getItem('token');
+    return token ? <Navbar /> : <NavbarGuest />;
   };
   return (
     <>
-      {DisplayNav()}
+      {condition()}
       <div>
         <Content1 />
         <Content2 />

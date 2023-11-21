@@ -89,7 +89,9 @@ export default function Register() {
                       type="password"
                       className="form-control shadow"
                       name="password"
-                      onChange={(e) => setData({...data, password: e.target.value})}
+                      onChange={(e) =>
+                        setData({ ...data, password: e.target.value })
+                      }
                       placeholder="password"
                     />
                   </div>
@@ -111,7 +113,7 @@ export default function Register() {
                       type="submit"
                       className="btn btn-warning w-100 shadow"
                     >
-                     Register
+                      Register
                     </button>
                   </div>
                   <div className="already mt-5 text-center">

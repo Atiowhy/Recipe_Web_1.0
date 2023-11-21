@@ -19,9 +19,9 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/" element={<Landing />} />
         <Route
           path="/search"
           element={
@@ -30,10 +30,31 @@ function App() {
             </AuthCheck>
           }
         />
-        <Route path="/detail/:id" element={<DetailMenu />} />
+        <Route
+          path="/detail/:id"
+          element={
+            <AuthCheck>
+              <DetailMenu />
+            </AuthCheck>
+          }
+        />
 
-        <Route path="/add" element={<Add />} />
-        <Route path="/update-menu/:menuId" element={<UpdateRecipe />} />
+        <Route
+          path="/add"
+          element={
+            <AuthCheck>
+              <Add />
+            </AuthCheck>
+          }
+        />
+        <Route
+          path="/update-menu/:menuId"
+          element={
+            <AuthCheck>
+              <UpdateRecipe />
+            </AuthCheck>
+          }
+        />
         <Route path="/profile" element={<Profile />} />
       </Routes>
     </Router>
