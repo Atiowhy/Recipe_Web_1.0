@@ -10,21 +10,21 @@
     Discover Recipe & Delicious Food.
     <br/>
     <br/>
-    <a href="https://github.com/Atiowhy/Recipe_API_1.0"><strong>Explore My docs »</strong></a>
+    <a href="https://github.com/Atiowhy/Recipe_Web_1.0"><strong>Explore My docs »</strong></a>
     <br/>
     <br/>
-    <a href="https://github.com/Atiowhy/Recipe_API_1.0">View Demo</a>
+    <a href="https://github.com/Atiowhy/Recipe_Web_1.0">View Demo</a>
     .
-    <a href="https://github.com/Atiowhy/Recipe_API_1.0/issues">Report Bug</a>
+    <a href="https://github.com/Atiowhy/Recipe_Web_1.0/issues">Report Bug</a>
     .
-    <a href="https://github.com/Atiowhy/Recipe_API_1.0/issues">Request Feature</a>
+    <a href="https://github.com/Atiowhy/Recipe_Web_1.0/issues">Request Feature</a>
   </p>
 </p>
 
 ## Table Of Contents
 
 - [About the Project](#about-the-project)
-- [Flowchart](#flowchart-recipe-api)
+
 - [Built With](#built-with)
 - [Installation](#installation)
 - [Related Project](#related-project)
@@ -33,17 +33,17 @@
 ## About The Project
 
 <p align="center">
-  Indulge in the ultimate culinary experience with our Recipes Food API, powered by Node.js and Express.js. Access a treasure trove of mouthwatering recipes, seamlessly served with fast and reliable data. Elevate your cooking journey with our developer-friendly API.
+  Indulge in the ultimate culinary experience with our Recipes Food Web, powered by Vite.js and Bootstrap Access a treasure trove of mouthwatering recipes, seamlessly served with fast and reliable data. Elevate your cooking journey with our developer-friendly API.
 </p>
 
 ## Built With
 
-This API was built with some technologies below:
+This Web was built with some technologies below:
 
 **Tools:**
 
-- Node.js
-- Postman
+- Vite.js
+- Bootstrap
 - Eslint
 
 **Server:**
@@ -60,18 +60,18 @@ This API was built with some technologies below:
 
 ## Installation
 
-Install Mama Recipe API with npm :
+Install Mama Recipe Web with npm :
 
 - Clone the Repo
 
 ```
-  git clone https://github.com/Atiowhy/Recipe_API_1.0.git
+  git clone https://github.com/Atiowhy/Recipe_Web_1.0.git
 ```
 
 - Go To Folder Repo
 
 ```
-  cd Recipe_API_1.0
+  cd Recipe_Web_1.0
 ```
 
 - Install Module
@@ -83,17 +83,7 @@ Install Mama Recipe API with npm :
 - Setup .env
 
 ```
-DB_HOST=
-DB_USER=
-DB_PASSWORD=
-DB_NAME=
-DB_PORT=
-SECRET_KEY=
-CD_NAME=
-CD_API_KEY=
-CD_API_SECRET=
-EMAIL=
-PASS=
+VITE_BASE_URL =
 ```
 
 - Type `npm run start` To Start Production
