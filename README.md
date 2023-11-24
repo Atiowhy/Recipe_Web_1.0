@@ -116,9 +116,9 @@ password: 123456
 
 ## ScreenShoot Project
 
-|                                           Home Page                                            |                                            Register Page                                            |                                          Login Page                                           |                                           Search Page                                           |
-| :--------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------: |
-| ![Home Page](https://res.cloudinary.com/dvk5zscth/image/upload/v1700810914/landing_yqtgle.png) | ![Register Page](https://res.cloudinary.com/dvk5zscth/image/upload/v1700810903/register_no7ldf.png) | ![Login Page](https://res.cloudinary.com/dvk5zscth/image/upload/v1700810903/login_yff4qu.png) | ![Search Page](https://res.cloudinary.com/dvk5zscth/image/upload/v1700810905/search_qzi5pm.png) |
+|                                                                                                     |                                         Register Page                                         |                                           Login Page                                            | Search Page |
+| :-------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------: | :---------: |
+| ![Register Page](https://res.cloudinary.com/dvk5zscth/image/upload/v1700810903/register_no7ldf.png) | ![Login Page](https://res.cloudinary.com/dvk5zscth/image/upload/v1700810903/login_yff4qu.png) | ![Search Page](https://res.cloudinary.com/dvk5zscth/image/upload/v1700810905/search_qzi5pm.png) |
 
 |                                            My Recipe Page                                             |                                         Add Recipe Page                                          |
 | :---------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------: |
