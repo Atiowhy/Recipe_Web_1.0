@@ -116,13 +116,13 @@ password: 123456
 
 ## ScreenShoot Project
 
-|                                            Home Page                                             |                                            Register Page                                             |                                            Login Page                                             |                                            Search Page                                             |
-| :----------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------: |
-| ![Home Page](https://drive.google.com/file/d/1c0bXsTEvBOH6eCc8p1BqXAAl3aED5-TI/view?usp=sharing) | ![Register Page](https://drive.google.com/file/d/1uY8tysg2NWzrDYgxORW9AbFgYtHaHBsl/view?usp=sharing) | ![Login Page](https://drive.google.com/file/d/1speDO_9ZW-gISYUF4wHnOmK5fZe59Rsk/view?usp=sharing) | ![Search Page](https://drive.google.com/file/d/1LKDD7TMCwsYNci3bzCM-pFREJb-6EZRX/view?usp=sharing) |
+|                                           Home Page                                            |                                            Register Page                                            |                                          Login Page                                           |                                           Search Page                                           |
+| :--------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------: |
+| ![Home Page](https://res.cloudinary.com/dvk5zscth/image/upload/v1700810914/landing_yqtgle.png) | ![Register Page](https://res.cloudinary.com/dvk5zscth/image/upload/v1700810903/register_no7ldf.png) | ![Login Page](https://res.cloudinary.com/dvk5zscth/image/upload/v1700810903/login_yff4qu.png) | ![Search Page](https://res.cloudinary.com/dvk5zscth/image/upload/v1700810905/search_qzi5pm.png) |
 
-|                                            My Recipe Page                                             |                                                                 Add Recipe Page                                                                 |
-| :---------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------: |
-| ![My Recipe Page](https://drive.google.com/file/d/13VzX1ubvDglkgx-dfXj6_qm6S1nCgGQZ/view?usp=sharing) | ![Add Recipe Page](https://res-console.cloudinary.com/dvk5zscth/thumbnails/v1/image/upload/v1700722970/YWRkX3JlY2lwZV92OWlkb3k=/grid_landscape) |
+|                                            My Recipe Page                                             |                                         Add Recipe Page                                          |
+| :---------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------: |
+| ![My Recipe Page](https://res.cloudinary.com/dvk5zscth/image/upload/v1700810904/my_recipe_aqqbrv.png) | ![Add Recipe Page](https://res.cloudinary.com/dvk5zscth/image/upload/v1700810903/add_ltx9sv.png) |
 
 ## Related Project
 
